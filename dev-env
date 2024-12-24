@@ -34,13 +34,25 @@ copy_dir() {
 	from=$1
 	to=$2
 	
-	pushd $from > /dev/null
+	pushd $from > /dev/null # this changes current directory to $from and add it to stack. Redirect to /dev/null to keep output clean
 	dirs=$(find . -mindepth 1 -maxdepth 1 -type d)
 	for dir in $dirs; do
 		execute rm -rf $to/$dir
 		execute cp -r $dir $to/$dir
 	done
-	popd > /dev/null
+	popd > /dev/null # this removes cd from stack and changes directory to last used
+}
+
+copy_file() {
+	from=$1
+	to=$2
+    file_name=$(basename $from)
+
+    execute rm $to/$file_name
+    execute cp $from $to/$file_name
 }
 
 copy_dir .config $XDG_CONFIG_HOME
+copy_file test $HOME/.config
+
+log "-------------------- dev --------------------"
