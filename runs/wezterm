@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+version="20240203-110809-5046fc22"
+package_file_name="wezterm-$version.Ubuntu22.04.deb"
+local_file=$(mktemp /tmp/XXXXX-$package_file_name) # create temp file with XXXXXX- prefix (X will be replaced by alpha-numeric symbols)
+trap "rm $local_file" EXIT # delete file on EXIT signal (after installation)
+
+curl -L -o $local_file https://github.com/wez/wezterm/releases/download/$version/$package_file_name
+sudo apt install -y $local_file
+
