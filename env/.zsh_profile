@@ -1,0 +1,16 @@
+export XDG_CONFIG_HOME=$HOME/.config
+VIM="nvim"
+
+export GIT_EDITOR=$VIM
+export N_PREFIX="$HOME/.local/n"
+
+alias vim='nvim'
+
+add_to_path() {
+    if [[ "$PATH" != *"$1"* ]]; then
+        export PATH=$1:$PATH
+    fi
+}
+
+add_to_path $HOME/.local/npm/bin
+add_to_path $HOME/.local/n/bin

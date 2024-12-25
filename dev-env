@@ -29,9 +29,10 @@ execute() {
 }
 
 log "-------------------- dev --------------------"
+echo "scripts dir $script_dir"
 
 copy_dir() {
-	from=$1
+	from=$script_dir/env/$1
 	to=$2
 	
 	pushd $from > /dev/null # this changes current directory to $from and add it to stack. Redirect to /dev/null to keep output clean
@@ -44,7 +45,7 @@ copy_dir() {
 }
 
 copy_file() {
-	from=$1
+	from=$script_dir/env/$1
 	to=$2
     file_name=$(basename $from)
 
@@ -53,6 +54,7 @@ copy_file() {
 }
 
 copy_dir .config $XDG_CONFIG_HOME
-copy_file test $HOME/.config
+copy_file .zshrc $HOME
+copy_file .zsh_profile $HOME
 
 log "-------------------- dev --------------------"
