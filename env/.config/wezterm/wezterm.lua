@@ -2,7 +2,6 @@ local wezterm = require('wezterm')
 
 local config = wezterm.config_builder()
 
-config.default_prog = {'pwsh'}
 -- config.color_scheme = 'Default (dark) (terminal.sexy)'
 config.font = wezterm.font {
     family = 'JetBrains Mono',
