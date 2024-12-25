@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 gsettings set org.gnome.desktop.interface enable-animations false
 
 gsettings set org.gnome.desktop.wm.keybindings switch-to-workspace-1 "['<Super>1']"
@@ -19,3 +20,7 @@ gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-6 "['<Super><Sh
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-7 "['<Super><Shift>7']"
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-8 "['<Super><Shift>8']"
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-9 "['<Super><Shift>9']"
+
+# remove outer gaps
+gsettings set org.gnome.shell.extensions.pop-shell gap-outer 0
+gsettings set org.gnome.shell.extensions.pop-shell gap-inner 2

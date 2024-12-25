@@ -23,12 +23,6 @@ vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
 
 vim.keymap.set("i", "<c-c>", "<esc>")
 
--- remove arrows
-vim.keymap.set({"n","v","i"}, "<Up>", "")
-vim.keymap.set({"n","v","i"}, "<Down>", "")
-vim.keymap.set({"n","v","i"}, "<Left>", "")
-vim.keymap.set({"n","v","i"}, "<Right>", "")
-
 system = vim.loop.os_uname().sysname
 print(system)
 if (string.find(system, "Windows")) then
