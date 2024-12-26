@@ -11,10 +11,9 @@ config.font_size = 14
 config.colors = require("cyberdream")
 
 config.use_fancy_tab_bar = false
+config.tab_bar_at_bottom = true
 config.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
 config.audible_bell = 'Disabled'
-
-
 
 -- Configuring key bindings
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 1000 }
@@ -24,49 +23,32 @@ config.keys = {
     { key = 'k', mods = "LEADER", action = act.ActivatePaneDirection 'Up' },
     { key = 'j', mods = "LEADER", action = act.ActivatePaneDirection 'Down' },
 
-    { key = 'c', mods = "LEADER", action = act.ActivatePaneDirection 'Down' },
+    { key = 'v', mods = "LEADER", action = act.ActivateCopyMode },
+    { key = 'c', mods = "LEADER", action = act.SpawnTab 'CurrentPaneDomain' },
 }
 
-config.key_tables = {
-  -- Defines the keys that are active in our resize-pane mode.
-  -- Since we're likely to want to make multiple adjustments,
-  -- we made the activation one_shot=false. We therefore need
-  -- to define a key assignment for getting out of this mode.
-  -- 'resize_pane' here corresponds to the name="resize_pane" in
-  -- the key assignments above.
-  resize_pane = {
-    { key = 'LeftArrow', action = act.AdjustPaneSize { 'Left', 1 } },
-    { key = 'h', action = act.AdjustPaneSize { 'Left', 1 } },
+for i = 1, 8 do
+  -- LEADER + number to activate that tab
+  table.insert(config.keys, {
+    key = tostring(i),
+    mods = 'LEADER',
+    action = act.ActivateTab(i - 1),
+  })
 
-    { key = 'RightArrow', action = act.AdjustPaneSize { 'Right', 1 } },
-    { key = 'l', action = act.AdjustPaneSize { 'Right', 1 } },
+  table.insert(config.keys, {
+    key = tostring(i),
+    mods = 'CTRL|ALT',
+    action = act.ActivateTab(i - 1),
+  })
+end
 
-    { key = 'UpArrow', action = act.AdjustPaneSize { 'Up', 1 } },
-    { key = 'k', action = act.AdjustPaneSize { 'Up', 1 } },
-
-    { key = 'DownArrow', action = act.AdjustPaneSize { 'Down', 1 } },
-    { key = 'j', action = act.AdjustPaneSize { 'Down', 1 } },
-
-    -- Cancel the mode by pressing escape
-    { key = 'Escape', action = 'PopKeyTable' },
-  },
-
-  -- Defines the keys that are active in our activate-pane mode.
-  -- 'activate_pane' here corresponds to the name="activate_pane" in
-  -- the key assignments above.
-  activate_pane = {
-    { key = 'LeftArrow', action = act.ActivatePaneDirection 'Left' },
-    { key = 'h', action = act.ActivatePaneDirection 'Left' },
-
-    { key = 'RightArrow', action = act.ActivatePaneDirection 'Right' },
-    { key = 'l', action = act.ActivatePaneDirection 'Right' },
-
-    { key = 'UpArrow', action = act.ActivatePaneDirection 'Up' },
-    { key = 'k', action = act.ActivatePaneDirection 'Up' },
-
-    { key = 'DownArrow', action = act.ActivatePaneDirection 'Down' },
-    { key = 'j', action = act.ActivatePaneDirection 'Down' },
-  },
-}
+local copy_mode = nil
+if wezterm.gui then
+    copy_mode = wezterm.gui.default_key_tables().copy_mode
+    table.insert(
+        copy_mode,
+        { key = 'y', mods = "LEADER", action = wezterm.action.CopyTo 'ClipboardAndPrimarySelection' }
+    )
+end
 
 return config
