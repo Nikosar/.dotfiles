@@ -11,8 +11,6 @@ config.font_size = 14
 config.colors = require("cyberdream")
 
 config.use_fancy_tab_bar = false
--- config.window_background_opacity = 0.5
--- config.win32_system_backdrop = 'Acrylic'
 config.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
 
 return config

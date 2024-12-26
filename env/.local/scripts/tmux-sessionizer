@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+
+selected_dir=$(find ~/personal -maxdepth 1 -mindepth 1 -type d | fzf)
+
+if [[ -z "$selected_dir" ]]; then
+    exit 0
+fi
+
+session_name=$(basename $selected_dir | tr ".:," "___")
+
+switch_to() {
+    if [[ -z "$TMUX" ]]; then
+        tmux attach-session -t $session_name
+    else 
+        tmux switch-client -t $session_name
+    fi
+}
+
+if tmux has-session -t=$session_name 2> /dev/null; then
+    switch_to
+    exit 0
+fi
+
+echo $session_name $selected_dir
+tmux new-session -ds $session_name -c $selected_dir
+switch_to
