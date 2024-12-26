@@ -30,7 +30,6 @@ vim.keymap.set({"n","v","i"}, "<Left>", "")
 vim.keymap.set({"n","v","i"}, "<Right>", "")
 
 system = vim.loop.os_uname().sysname
-print(system)
 if (string.find(system, "Windows")) then
     vim.cmd[[
     let &shell = executable('pwsh') ? 'pwsh' : 'powershell'
