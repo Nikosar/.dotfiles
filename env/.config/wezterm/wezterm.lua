@@ -51,4 +51,6 @@ if wezterm.gui then
     )
 end
 
+require("workspace_switcher").apply(config)
+
 return config
