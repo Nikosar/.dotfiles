@@ -2,6 +2,11 @@ local wezterm = require('wezterm')
 local act = wezterm.action
 local config = wezterm.config_builder()
 
+local target = wezterm.target_triple
+
+if target:find("windows") then
+    config.default_prog = { "pwsh" }
+end
 -- config.color_scheme = 'Default (dark) (terminal.sexy)'
 config.font = wezterm.font {
     family = 'JetBrains Mono',

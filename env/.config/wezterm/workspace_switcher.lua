@@ -1,5 +1,6 @@
 local wezterm = require("wezterm")
 local workspace_switcher = wezterm.plugin.require("https://github.com/Nikosar/smart_workspace_switcher.wezterm")
+local is_windows = wezterm.target_triple:find("windows")
 
 -- replace zoxide search with personal projects find
 function workspace_switcher.choices.get_zoxide_elements(choice_table, opts)
@@ -7,7 +8,13 @@ function workspace_switcher.choices.get_zoxide_elements(choice_table, opts)
 		opts = { extra_args = "", workspace_ids = {} }
 	end
 
-    local cmd = 'find ~/personal -maxdepth 1 -mindepth 1 -type d'
+    local cmd = nil
+    if is_windows then
+        cmd = 'Get-ChildItem -Path ~/personal -Directory'
+    else
+        cmd = 'find ~/personal -maxdepth 1 -mindepth 1 -type d'
+    end
+
     local success, stdout, stderr = wezterm.run_child_process({ 'zsh', '-c', cmd })
     if not success then
         wezterm.log_error(stderr)
