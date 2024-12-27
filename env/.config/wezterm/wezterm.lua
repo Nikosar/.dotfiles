@@ -20,6 +20,7 @@ config.tab_bar_at_bottom = true
 config.window_decorations = 'INTEGRATED_BUTTONS|RESIZE'
 config.audible_bell = 'Disabled'
 
+require('keybindings').apply(config)
 require("workspace_switcher").apply(config)
 
 return config
