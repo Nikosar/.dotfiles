@@ -6,5 +6,7 @@ local_file=$(mktemp /tmp/XXXXX-$package_file_name) # create temp file with XXXXX
 trap "rm $local_file" EXIT # delete file on EXIT signal (after installation)
 
 curl -L -o $local_file https://github.com/wez/wezterm/releases/download/$version/$package_file_name
+
+sudo apt update
 sudo apt install -y $local_file
 

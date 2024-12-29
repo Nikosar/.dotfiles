@@ -15,3 +15,4 @@ add_to_path() {
 add_to_path $HOME/.local/npm/bin
 add_to_path $HOME/.local/n/bin
 add_to_path $HOME/.local/scripts
+add_to_path "$HOME/.jdks/jdk21.0.5/bin"

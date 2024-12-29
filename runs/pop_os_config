@@ -21,6 +21,7 @@ gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-7 "['<Super><Sh
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-8 "['<Super><Shift>8']"
 gsettings set org.gnome.desktop.wm.keybindings move-to-workspace-9 "['<Super><Shift>9']"
 
+gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Shift>Alt_L', '<Alt>Shift_L']"
 # remove outer gaps
 gsettings set org.gnome.shell.extensions.pop-shell gap-outer 0
 gsettings set org.gnome.shell.extensions.pop-shell gap-inner 2

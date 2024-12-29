@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+sudo apt update
 echo "hello from neovim"
 git clone -b "v0.10.3" "https://github.com/neovim/neovim.git" $HOME/personal/neovim
 sudo apt-get install ninja-build gettext cmake unzip curl build-essential

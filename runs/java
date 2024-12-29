@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+jdk_version="jdk21.0.5"
+zulu_version="21.38.21"
+filename="zulu$zulu_version-ca-$jdk_version-linux_x64"
+jdk_path="$HOME/.jdks/$filename"
+
+if [ -d $jdk_path ]; then
+    echo "skipping download jdk $filename.tar.gz"
+    exit 0
+fi
+
+download=$(mktemp "/tmp/XXXXX-zulu-$jdk_version.tar.gz")
+trap "rm $download" EXIT
+
+mkdir $HOME/.jdks
+echo "download jdk $filename"
+curl -L -o $download "https://cdn.azul.com/zulu/bin/$filename.tar.gz"
+tar -xzf $download -C "$HOME/.jdks/"
+mv $jdk_path $HOME/.jdks/$jdk_version
