@@ -10,12 +10,12 @@ function workspace_switcher.choices.get_zoxide_elements(choice_table, opts)
 
     local cmd = nil
     if is_windows then
-        cmd = 'Get-ChildItem -Path ~/personal -Directory'
+        cmd = {'pwsh', '-NoProfile', '-c', 'Get-ChildItem -Path ~/personal -Directory | Select-Object -ExpandProperty FullName'}
     else
-        cmd = 'find ~/personal -maxdepth 1 -mindepth 1 -type d'
+        cmd = {'bash', '-c', 'find ~/personal -maxdepth 1 -mindepth 1 -type d'}
     end
 
-    local success, stdout, stderr = wezterm.run_child_process({ 'zsh', '-c', cmd })
+    local success, stdout, stderr = wezterm.run_child_process(cmd)
     if not success then
         wezterm.log_error(stderr)
         return {}
