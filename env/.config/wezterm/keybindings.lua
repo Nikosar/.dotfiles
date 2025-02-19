@@ -12,6 +12,10 @@ return {
 
             { key = 'v', mods = "LEADER", action = act.ActivateCopyMode },
             { key = 'c', mods = "LEADER", action = act.SpawnTab 'CurrentPaneDomain' },
+
+            { key = 'a', mods = "LEADER", action = wezterm.action.SendString "\x01" },
+
+            { key = 'v', mods = "CTRL", action = wezterm.action.PasteFrom "Clipboard" },
         }
 
         for i = 1, 8 do
