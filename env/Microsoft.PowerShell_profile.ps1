@@ -23,5 +23,3 @@ function loadenv {
                 set-content env:\$name $value
         }
 }
-
-. ~\config\powershell\settings.ps1
