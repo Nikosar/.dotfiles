@@ -20,6 +20,8 @@ vim.g.mapleader = " "
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
 --  delete without copy
 vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
+vim.keymap.set({"n", "v"}, "<leader>p", [["0p]])
+
 
 vim.keymap.set("i", "<c-c>", "<esc>")
 

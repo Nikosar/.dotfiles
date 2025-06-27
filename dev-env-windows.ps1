@@ -61,6 +61,7 @@ function Copy-File {
 
 Copy-Dir ".config" "$HOME\.config"
 Copy-Dir ".local" "$HOME\.local"
+New-Item -ItemType Directory -Path "$HOME\Documents\PowerShell"
 Copy-File "Microsoft.PowerShell_profile.ps1" "$HOME\Documents\PowerShell"
 
 Log "-------------------- dev --------------------"

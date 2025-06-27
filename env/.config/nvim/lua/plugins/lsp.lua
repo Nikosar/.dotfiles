@@ -51,7 +51,7 @@ return {
 
                 require("mason").setup({})
                 require("mason-lspconfig").setup({
-                    ensure_installed = {"lua_ls", "tsserver", "terraformls", "sqlls"},
+                    ensure_installed = {"lua_ls", "terraformls"},
                     handlers = {
                         lsp_zero.default_setup,
                         lua_ls = function ()
