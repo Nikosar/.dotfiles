@@ -13,6 +13,8 @@ set nohlsearch
 set incsearch
 set scrolloff:8
 set updatetime:50
+set ignorecase
+set smartcase
 ]]
 
 vim.g.mapleader = " "
